@@ -1,0 +1,20 @@
+<h2>Doctor Name: <%= @doctor.name %></h2>
+<h2>Doctor Specialty: <%= @doctor.specialty%></h2>
+
+<h3>Patients</h3>
+
+<% if @doctor.patients %>
+  <ul>
+    <% @doctor.patients.each do |patient| %>
+      <li><a href="/doctors/<%= @doctor.id %>/patients/<%= patient.id %>"><%= patient.name %></a></li>
+    <% end %>
+ </ul>
+<% else %>
+  <p>There are no patients listed for this doctor yet.</p>
+<% end %>
+
+<p><a href="/doctors/<%= @doctor.id %>/edit">Edit Doctor</a></p>
+<p><a href="/doctors">Return to doctor list</a></p>
+
+
+

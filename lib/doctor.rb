@@ -37,13 +37,13 @@ class Doctor
     DB.exec("DELETE FROM doctors *;")
   end
 
-  def self.find( id)
+  def self.find(id)
     doctor = DB.exec("SELECT * FROM doctors WHERE id = #{id};").first()
     if doctor
       name = doctor.fetch("name")
       specialty = doctor.fetch("specialty")
       id = doctor.fetch("id").to_i
-      Doctor.new({:name => name, specialty => :specialty, :id => id})
+      Doctor.new({:name => name, :specialty => specialty, :id => id})
     else
       nil
     end
@@ -57,7 +57,7 @@ class Doctor
   
   def delete
     DB.exec("DELETE FROM doctors WHERE id = #{@id};")
-    DB.exec("DELETE FROM patients WHERE patients_id = #{@id};")
+    # DB.exec("DELETE FROM patients WHERE patients_id = #{@id};")
   end
 
   def patients

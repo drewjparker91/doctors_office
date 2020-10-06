@@ -1,0 +1,25 @@
+<h1> Doctor's Office </h1>
+
+<h3>Doctors:</h3>
+
+
+<form action="/doctors">
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input id="search" name="search" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Search</button>
+</form>
+
+<% if @doctors.any? %>
+  <ul>
+    <% @doctors.each do |doctor| %>
+      <li><a href="/doctors/<%= doctor.id %>"><%= doctor.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> AIN'T NO DOCTAS IN HERE BOIIIIIII </p>
+<% end %>
+
+<a href="/doctors/new">Add a doctor</a>
+
