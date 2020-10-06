@@ -10,7 +10,7 @@ class Doctor
 
   def ==(doctor_to_compare)
     if doctor_to_compare != nil
-      (self.name() == doctor_to_compare.name()) && (self.specialty() == doctor_to_compare.specialty() && self.id() == doctor_to_compare.id())
+      (self.name() == doctor_to_compare.name()) && (self.specialty() == doctor_to_compare.specialty())
     else
       false
     end
@@ -21,14 +21,15 @@ class Doctor
     doctors = []
     returned_doctors.each() do |doctor|
       name = doctor.fetch("name")
-      id = album.fetch("id").to_i()
-      doctors.push(Doctor.new({:name => name, :id => id}))
+      specialty = doctor.fetch("specialty")
+      id = doctor.fetch("id").to_i()
+      doctors.push(Doctor.new({:name => name, :specialty => specialty, :id => id}))
     end
     doctors
   end
 
-  def self.save
-    result = DB.exec("INSERT INTO doctors (name) VALUES ('#{@name}') RETURNING id;")
+  def save
+    result = DB.exec("INSERT INTO doctors (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
 
